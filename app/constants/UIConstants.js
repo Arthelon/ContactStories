@@ -1,0 +1,2 @@
+export const TOGGLE_COMPOSER = 'TOGGLE_COMPOSER'
+export const TOGGLE_ADD_USER = 'TOGGLE_ADD_USER'
