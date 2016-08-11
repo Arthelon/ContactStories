@@ -8,7 +8,7 @@ export default class Contact extends Component {
 			<div>
 				<ListItem
 					primaryText={name}
-					leftAvatar={profileImage}
+					leftAvatar={image}
 					onClick={handleClick}
 				/>
 			</div>
