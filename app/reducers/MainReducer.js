@@ -1,7 +1,7 @@
 import * as storyConstants from '../constants/StoryConstants'
 import * as contactConstants from '../constants/ContactConstants'
 
-import {Map, List} from 'immutable'
+import {Map, List, OrderedMap} from 'immutable'
 
 
 const initialState = Map({

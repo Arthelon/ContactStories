@@ -23,6 +23,7 @@
     "electron": "./node_modules/.bin/electron"
   },
   "dependencies": {
+    "babel-polyfill": "^6.13.0",
     "css-modules-require-hook": "^4.0.0",
     "electron-debug": "^1.0.0",
     "font-awesome": "^4.6.3",

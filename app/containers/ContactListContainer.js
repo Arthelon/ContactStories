@@ -12,10 +12,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		...bindActionCreators(contactActionCreators),
-		...bindActionCreators({selectContact})
-	}
+	return bindActionCreators(contactActionCreators, dispatch)
 }
 
 const ContactListContainer = connect(mapStateToProps, mapDispatchToProps)(ContactList)

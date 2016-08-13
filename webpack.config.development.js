@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import baseConfig from './webpack.config.base';
 
 const config = {
+
   ...baseConfig,
 
   debug: true,
@@ -10,6 +11,7 @@ const config = {
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
+    'babel-polyfill',
     'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
     './app/index'
   ],
