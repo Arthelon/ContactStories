@@ -6,7 +6,6 @@ export default class Contact extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Test</h1>
 				<ListItem
 					primaryText={name}
 					leftAvatar={image}
