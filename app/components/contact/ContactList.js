@@ -41,7 +41,8 @@ export default class ContactList extends Component {
 			"default": {
 				sidebar: {
 					height: "100%",
-					width: "30%"
+					width: "30%",
+					display: "inline-block"
 				}
 			}
 		})
@@ -62,7 +63,12 @@ export default class ContactList extends Component {
 			</SelectableList>
 			<Divider/>
 			<List>
-				<ListItem leftIcon={<ContentAdd/>} primaryText="Add contact"/>
+				<ListItem leftIcon={<ContentAdd/>} 
+					primaryText="Add contact"
+					onClick={() => {
+						this.props.toggleComposer()
+					}}
+				/>
 			</List>
 		</div>
 		)

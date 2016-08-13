@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import ContactList from '../components/ContactList'
-import {selectContact} from '../actions/UIActions'
+import ContactList from '../components/contact/ContactList'
+import {toggleContactComposer} from '../actions/UIActions'
 import {bindActionCreators} from 'redux'
 import * as contactActionCreators from '../actions/ContactActions'
 
@@ -12,7 +12,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators(contactActionCreators, dispatch)
+	return {
+		...bindActionCreators(contactActionCreators, dispatch),
+		toggleComposer: () => {
+			dispatch(toggleContactComposer())
+		}
+	}
 }
 
 const ContactListContainer = connect(mapStateToProps, mapDispatchToProps)(ContactList)
