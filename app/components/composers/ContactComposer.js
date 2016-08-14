@@ -6,25 +6,60 @@ import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import reactCSS from 'reactcss'
+import {remote} from "electron"
+import {findDOMNode} from 'react-dom'
+import fs from 'fs'
+
+const dialog = remote.require("electron").dialog
 
 
 export default class ContactComposer extends Component {
 	state = {
 		errors: {
 			name: ''
-		}
+		},
+		valid: false
 	}
 
-	handleNameChange = (val) => {
-		console.log(val)
+	handleNameChange = (e) => {
+		this.name = e.target.value
+		let valid = false
+		console.log(this.name)
+		if (this.name) {
+			valid = true
+		}
+		this.setState({
+			valid
+		})
 	}
 
 	handleSubmit = () => {
+		const name = this.name
+		const file = this.filePath
 
+		if (!!name && file && /(?:jpg|png)$/.exec(file)) {
+			this.props.addContact(name, file)
+			this.handleExit()
+		} else {
+			console.log("Unknown error occurred")
+		}
 	}
 
 	handleExit = () => {
+		this.name = ""
+		this.filePath = ""
 		this.props.toggleComposer()
+	}
+
+	handleFileUpload = () => {
+		dialog.showOpenDialog({
+			properties: ["openFile"]
+		},(paths) => {
+			if (paths) {
+				this.filePath = paths[0]
+				console.log(this.filePath)
+			}
+		})
 	}
 
 	render() {
@@ -79,13 +114,15 @@ export default class ContactComposer extends Component {
 				<FlatButton 
 					style={styles.item}
 					label="Image"
-					icon={<FileUpload/>}>
+					icon={<FileUpload/>}
+					onClick={this.handleFileUpload}>
 				</FlatButton>
 				<br/>
 				<FlatButton 
 					style={styles.item}
 					primary={true} 
 					label="Submit" 
+					disabled={!this.state.valid}
 					onClick={this.handleSubmit}
 				/>
 			</div>

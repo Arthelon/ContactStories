@@ -9,6 +9,7 @@ export function addContact(name, image) {
 			name,
 			image
 		})
+		console.log(name, image)
 		return dispatch({
 			type: ADD_CONTACT,
 			contact: document
