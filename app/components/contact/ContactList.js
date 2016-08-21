@@ -19,7 +19,7 @@ function wrapState(ComposedComponent) {
 		render() {
 			return (
 				<ComposedComponent
-				value={this.props.selectedContact}
+					value={this.props.selectedContact}
 				>
 				{this.props.children}
 				</ComposedComponent>
@@ -50,12 +50,15 @@ export default class ContactList extends Component {
 			<div style={styles.sidebar}>
 			<Subheader>Contacts</Subheader>
 			<SelectableList>
-				{this.props.contacts.length ? Object.keys(this.props.contacts).map(key => {
+				{Object.keys(this.props.contacts).length ? Object.keys(this.props.contacts).map(key => {
 					let contact = this.props.contacts[key];
-					<Contact
-					name={contact.name} 
-					image={contact.image}  
-					handleClick={this.props.selectContact.bind(this, contact.id)}
+					console.log(contact)
+					return <Contact
+						key={contact._id}
+						id={contact._id}
+						name={contact.name}
+						imgSrc={contact._attachments.contactImage.data}
+						handleClick={this.props.selectContact.bind(this, contact._id)}
 					/>
 				}) : 
 					<ListItem value={-2} primaryText="No contacts found..."/>

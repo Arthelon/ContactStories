@@ -4,7 +4,6 @@ import {Map} from 'immutable'
 const initialState = Map({
 	storyComposerShown: false,
 	contactComposerShown: false,
-	selectedContactId: ''
 })
 
 export default function UIReducer(state = initialState, action) {

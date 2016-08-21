@@ -9,6 +9,7 @@ import reactCSS from 'reactcss'
 import {remote} from "electron"
 import {findDOMNode} from 'react-dom'
 import fs from 'fs'
+import btoa from 'btoa'
 
 const dialog = remote.require("electron").dialog
 
@@ -35,9 +36,12 @@ export default class ContactComposer extends Component {
 	handleSubmit = () => {
 		const name = this.name
 		const file = this.filePath
+        let imageReg = /(jpg|png|jpeg)$/.exec(file)
 
-		if (!!name && file && /(?:jpg|png)$/.exec(file)) {
-			this.props.addContact(name, file)
+		if (!!name && file && imageReg) {
+			let imageContent = btoa(fs.readFileSync(file))
+            console.log(imageReg[1])
+			this.props.addContact(name, imageContent, imageReg[1])
 			this.handleExit()
 		} else {
 			console.log("Unknown error occurred")
@@ -48,6 +52,7 @@ export default class ContactComposer extends Component {
 		this.name = ""
 		this.filePath = ""
 		this.props.toggleComposer()
+        this.props.fetchContacts()
 	}
 
 	handleFileUpload = () => {

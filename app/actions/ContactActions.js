@@ -3,11 +3,19 @@ import {fetchStories} from './StoryActions'
 import {batchActions} from 'redux-batched-actions'
 import db from "../config/database"
 
-export function addContact(name, image) {
+export function addContact(name, image, type) {
 	return async function(dispatch) {
+		if (type == 'jpg') {
+			type = 'jpeg'
+		}
 		let document = await db.post({
 			name,
-			image
+			_attachments: {
+				contactImage: {
+					content_type: 'text/'+type,
+					data: image
+				}
+			}
 		})
 		console.log(document)
 		return dispatch({
@@ -45,6 +53,9 @@ export function fetchContacts() {
 			let contacts = await db.allDocs({
 				attachments: true,
 				include_docs: true
+			})
+			contacts = contacts.rows.map(contact => {
+				return contact.doc
 			})
 			return dispatch(setContacts(contacts))
 		} catch (err) {

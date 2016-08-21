@@ -7,7 +7,7 @@ import * as contactActionCreators from '../actions/ContactActions'
 const mapStateToProps = (state) => {
 	return {
 		contacts: state.main.get('contacts').toJS(),
-		selectedContact: state.ui.get('selectedContact')
+		selectedContact: state.main.get('selectedContactId')
 	}
 }
 

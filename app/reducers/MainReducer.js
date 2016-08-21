@@ -23,9 +23,9 @@ export default function MainReducer(state = initialState, action) {
 			return state.deleteIn(["contacts", action.id])
 		case contactConstants.SET_CONTACTS:
 			let contacts = OrderedMap(action.contacts.map(contact => {
-				return [contact.id, contact]
+				return [contact._id, contact]
 			}))
-			return state.update("contacts", contacts)
+			return state.set("contacts", contacts)
 		case storyConstants.SELECT_CONTACT:
 			return state.set('selectedContactId', action.id)
 		case storyConstants.ADD_STORY:

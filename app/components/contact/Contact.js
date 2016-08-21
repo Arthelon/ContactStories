@@ -1,23 +1,26 @@
 import React, {Component} from 'react'
 import {ListItem} from 'material-ui/List'
+import Avatar from 'material-ui/Avatar'
 
 
 export default class Contact extends Component {
+
+
 	render() {
 		return (
-			<div>
-				<ListItem
-					primaryText={name}
-					leftAvatar={image}
-					onClick={handleClick}
-				/>
-			</div>
+			<ListItem
+				key={this.props.id}
+				primaryText={this.props.name}
+				leftAvatar={<Avatar src={this.props.imgSrc}/>}
+				onClick={this.props.handleClick}
+			/>
 		)
 	}
 }
 
 Contact.propTypes = {
-	primaryText: React.PropTypes.string,
-	leftAvatar: React.PropTypes.string,
-	handleClick: React.PropTypes.func
+	name: React.PropTypes.string,
+	imgSrc: React.PropTypes.string,
+	handleClick: React.PropTypes.func,
+	id: React.PropTypes.string
 }

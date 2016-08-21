@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {toggleContactComposer} from '../actions/UIActions'
-import {addContact} from '../actions/ContactActions'
+import {addContact, fetchContacts} from '../actions/ContactActions'
 import {bindActionCreators} from 'redux'
 import ContactComposer from '../components/composers/ContactComposer'
 
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
 		toggleComposer: () => {
 			dispatch(toggleContactComposer())
 		},
-		...bindActionCreators({addContact}, dispatch)
+		...bindActionCreators({addContact, fetchContacts}, dispatch)
 	}	
 }
 
