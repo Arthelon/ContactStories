@@ -1,10 +1,14 @@
 import {ADD_STORY, REMOVE_STORY, SET_STORIES} from '../constants/StoryConstants'
 import db from '../config/database'
 
-export function removeStory(storyId) {
+export function removeStory(contactId, storyId) {
 	return async function(dispatch) {
 		try {
-			await db("stories").removeById(storyId)
+			let contact = await db.get(contactId)
+			contact.stories = contact.stories.filter((story) => {
+				return story.id != storyId
+			})
+			db.put(contact)
 			return dispatch({
 				type: REMOVE_STORY,
 				id: storyId
@@ -19,10 +23,13 @@ export function removeStory(storyId) {
 export function addStory(contactId, text) {
 	return async function(dispatch) {
 		try {
-			let story = await db("stories").insert(contactId, {
-				contactId,
+			let contact = await db.get(contactId)
+			let story = {
+				id:  uuid.v1(),
 				text
-			})
+			}
+			contact.stories.push(story)
+			db.put(contact)
 			return dispatch({
 				type: ADD_STORY,
 				story
@@ -41,10 +48,10 @@ export function setStories(stories) {
 }
 
 export function fetchStories(contactId) {
-	return async function() {
+	return async function(dispatch) {
 		try {
-			let stories = await db("stories").filter({contactId}).value()
-			return dispatch(setStories(stories))
+			let contact = db.get(contactId)
+			return dispatch(setStories(contact.stories))
 		} catch (err) {
 			console.log(err)
 		}

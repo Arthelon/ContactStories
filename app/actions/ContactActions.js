@@ -5,11 +5,11 @@ import db from "../config/database"
 
 export function addContact(name, image) {
 	return async function(dispatch) {
-		let document = await db.insert({
+		let document = await db.post({
 			name,
 			image
 		})
-		console.log(name, image)
+		console.log(document)
 		return dispatch({
 			type: ADD_CONTACT,
 			contact: document
@@ -20,8 +20,8 @@ export function addContact(name, image) {
 export function removeContact(id) {
 	return async function(dispatch) {
 		try {
-			await db("contacts").removeById(id)
-			await db("stories").removeWhere({contactId: id})
+			let contact = db.get(id)
+			db.remove(contact)
 			return dispatch({
 				type: REMOVE_CONTACT,
 				id
@@ -42,7 +42,10 @@ export function setContacts(contacts) {
 export function fetchContacts() {
 	return async function(dispatch) {
 		try {
-			let contacts = await db("contacts").value()
+			let contacts = await db.allDocs({
+				attachments: true,
+				include_docs: true
+			})
 			return dispatch(setContacts(contacts))
 		} catch (err) {
 			console.log(err)

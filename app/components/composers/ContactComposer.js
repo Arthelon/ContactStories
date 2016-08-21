@@ -21,10 +21,9 @@ export default class ContactComposer extends Component {
 		valid: false
 	}
 
-	handleNameChange = (e) => {
+	handleNameChange = (e) => { 
 		this.name = e.target.value
 		let valid = false
-		console.log(this.name)
 		if (this.name) {
 			valid = true
 		}

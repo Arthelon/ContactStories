@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import ContactListContainer from './ContactListContainer'
 import ContactComposerContainer from './ContactComposerContainer'
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -6,22 +6,22 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 export default class App extends Component {
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object.isRequired
-  }
-
-  getChildContext() {
-    return {
-      muiTheme: getMuiTheme(baseTheme)
+    static childContextTypes = {
+        muiTheme: React.PropTypes.object.isRequired
     }
-  }
 
-  render() {
-    return (
-      <div>
-        <ContactListContainer/>
-        <ContactComposerContainer/>
-      </div>
-      );
-  }
+    getChildContext() {
+        return {
+            muiTheme: getMuiTheme(baseTheme)
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <ContactListContainer/>
+                <ContactComposerContainer/>
+            </div>
+        );
+    }
 }
