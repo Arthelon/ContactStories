@@ -52,7 +52,7 @@ export function setStories(stories) {
 export function fetchStories(contactId) {
 	return async function(dispatch) {
 		try {
-			let contact = db.get(contactId)
+			let contact = await db.get(contactId)
 			return dispatch(setStories(contact.stories))
 		} catch (err) {
 			console.log(err)

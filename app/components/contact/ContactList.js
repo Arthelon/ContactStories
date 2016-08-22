@@ -52,7 +52,6 @@ export default class ContactList extends Component {
 			<SelectableList>
 				{Object.keys(this.props.contacts).length ? Object.keys(this.props.contacts).map(key => {
 					let contact = this.props.contacts[key];
-					console.log(contact)
 					return <Contact
 						key={contact._id}
 						id={contact._id}

@@ -12,9 +12,9 @@ export function addContact(name, imageUrl) {
 		fs.renameSync(imageUrl, newImageUrl)
 		let document = await db.post({
 			name,
-			newImageUrl
+			newImageUrl,
+			stories: []
 		})
-		console.log(document)
 		return dispatch({
 			type: ADD_CONTACT,
 			contact: document
@@ -62,8 +62,10 @@ export function fetchContacts() {
 }
 
 export function selectContact(id) {
-	return batchActions([{
+	return async function(dispatch) {
+		dispatch(batchActions([{
 			type: SELECT_CONTACT,
 			id
-		}, fetchStories(id)])
+		}, fetchStories(id)(dispatch)]))
+	}
 }

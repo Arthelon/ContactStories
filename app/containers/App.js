@@ -4,6 +4,7 @@ import ContactComposerContainer from './ContactComposerContainer'
 import StoryListContainer from './StoryListContainer'
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import reactCSS from 'reactcss'
 
 
 export default class App extends Component {
@@ -18,8 +19,18 @@ export default class App extends Component {
     }
 
     render() {
+        const styles = reactCSS({
+            default: {
+                wrapper: {
+                    display: "flex",
+                    "flexDirection": "row",
+                    height: "100%",
+                    width: "100%"
+                }
+            }
+        })
         return (
-            <div>
+            <div style={styles.wrapper}>
                 <ContactListContainer/>
                 <StoryListContainer/>
                 <ContactComposerContainer/>
