@@ -51,7 +51,7 @@ export default class StoryList extends Component {
                     handleClick={() => {
                         this.props.toggleStoryComposer()
                     }}
-                    />
+                />
             </div>
         )
     }

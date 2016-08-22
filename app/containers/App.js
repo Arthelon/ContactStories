@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ContactListContainer from './ContactListContainer'
 import ContactComposerContainer from './ContactComposerContainer'
+import StoryComposerContainer from './StoryComposerContainer'
 import StoryListContainer from './StoryListContainer'
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -33,6 +34,7 @@ export default class App extends Component {
             <div style={styles.wrapper}>
                 <ContactListContainer/>
                 <StoryListContainer/>
+                <StoryComposerContainer/>
                 <ContactComposerContainer/>
             </div>
         );

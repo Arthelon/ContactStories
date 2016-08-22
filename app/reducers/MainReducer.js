@@ -30,10 +30,7 @@ export default function MainReducer(state = initialState, action) {
 			console.log(action.id)
 			return state.set('selectedContactId', action.id)
 		case storyConstants.ADD_STORY:
-			return state.get("stories").set(action.story.id, Map({
-				id: action.story.id,
-				text: action.story.text
-			}))
+			return state.get("stories").set(action.story.id, Map(action.story))
 		case storyConstants.REMOVE_STORY:
 			return state.get("stories").delete(action.id)
 		case storyConstants.SET_STORIES:

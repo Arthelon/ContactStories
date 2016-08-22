@@ -6,7 +6,7 @@ import StoryList from '../components/story/StoryList'
 
 const mapStateToProps = state => {
     return {
-        stories: state.main.get("stories").toJS(),
+        stories: state.main.get("stories").toArray(),
         selectedContactId: state.main.get("selectedContactId")
     }
 }

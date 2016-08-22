@@ -8,8 +8,6 @@ import IconButton from 'material-ui/IconButton'
 import reactCSS from 'reactcss'
 import {remote} from "electron"
 import {findDOMNode} from 'react-dom'
-import fs from 'fs'
-import btoa from 'btoa'
 
 const dialog = remote.require("electron").dialog
 
@@ -51,7 +49,6 @@ export default class ContactComposer extends Component {
 		this.name = ""
 		this.filePath = ""
 		this.props.toggleComposer()
-        this.props.fetchContacts()
 	}
 
 	handleFileUpload = () => {
@@ -101,7 +98,7 @@ export default class ContactComposer extends Component {
 		}, this.props)
 		return (
 			<div style={styles.composer}>
-				<IconButton 
+				<IconButton
 					style={styles.exitButton}
 					tooltip="Exit"
 					onClick={this.handleExit}>
@@ -114,17 +111,17 @@ export default class ContactComposer extends Component {
 					errorText={this.state.errors.name}
 				/>
 				<br/>
-				<FlatButton 
+				<FlatButton
 					style={styles.item}
 					label="Image"
 					icon={<FileUpload/>}
 					onClick={this.handleFileUpload}>
 				</FlatButton>
 				<br/>
-				<FlatButton 
+				<FlatButton
 					style={styles.item}
-					primary={true} 
-					label="Submit" 
+					primary={true}
+					label="Submit"
 					disabled={!this.state.valid}
 					onClick={this.handleSubmit}
 				/>
