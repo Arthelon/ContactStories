@@ -6,7 +6,7 @@ import os from 'os'
 export const BASE_URL = path.join(os.homedir(), '.contactStories/')
 
 const removeAll = () => {
-    new PouchDB('cotnactStories').destroy().then(function () {
+    new PouchDB('contactStories').destroy().then(function () {
         console.log("Db destroyed")
     })
 }
