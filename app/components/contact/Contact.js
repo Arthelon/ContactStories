@@ -11,7 +11,7 @@ export default class Contact extends Component {
 			<ListItem
 				key={this.props.id}
 				primaryText={this.props.name}
-				leftAvatar={<Avatar src={this.props.imgSrc}/>}
+				leftAvatar={<Avatar src={this.props.imgUrl}/>}
 				onClick={this.props.handleClick}
 			/>
 		)
@@ -20,7 +20,7 @@ export default class Contact extends Component {
 
 Contact.propTypes = {
 	name: React.PropTypes.string,
-	imgSrc: React.PropTypes.string,
+	imgUrl: React.PropTypes.string,
 	handleClick: React.PropTypes.func,
 	id: React.PropTypes.string
 }

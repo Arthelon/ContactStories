@@ -1,21 +1,18 @@
 import {ADD_CONTACT, REMOVE_CONTACT, SET_CONTACTS, SELECT_CONTACT} from '../constants/ContactConstants'
 import {fetchStories} from './StoryActions'
 import {batchActions} from 'redux-batched-actions'
-import db from "../config/database"
+import db, { BASE_URL } from "../config/database"
+import fs from "fs"
 
-export function addContact(name, image, type) {
+export function addContact(name, imageUrl) {
 	return async function(dispatch) {
-		if (type == 'jpg') {
-			type = 'jpeg'
-		}
+		let imageParts = imageUrl.split('/')
+		let newImageUrl = BASE_URL + imageParts[imageParts.length - 1]
+		console.log(newImageUrl)
+		fs.renameSync(imageUrl, newImageUrl)
 		let document = await db.post({
 			name,
-			_attachments: {
-				contactImage: {
-					content_type: 'text/'+type,
-					data: image
-				}
-			}
+			newImageUrl
 		})
 		console.log(document)
 		return dispatch({

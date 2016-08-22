@@ -57,7 +57,7 @@ export default class ContactList extends Component {
 						key={contact._id}
 						id={contact._id}
 						name={contact.name}
-						imgSrc={contact._attachments.contactImage.data}
+						imgUrl={contact.newImageUrl}
 						handleClick={this.props.selectContact.bind(this, contact._id)}
 					/>
 				}) : 

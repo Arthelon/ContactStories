@@ -39,9 +39,8 @@ export default class ContactComposer extends Component {
         let imageReg = /(jpg|png|jpeg)$/.exec(file)
 
 		if (!!name && file && imageReg) {
-			let imageContent = btoa(fs.readFileSync(file))
-            console.log(imageReg[1])
-			this.props.addContact(name, imageContent, imageReg[1])
+        	console.log("Electron given filepath: " + file)
+			this.props.addContact(name, file)
 			this.handleExit()
 		} else {
 			console.log("Unknown error occurred")
