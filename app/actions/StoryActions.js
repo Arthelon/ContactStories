@@ -1,5 +1,6 @@
 import {ADD_STORY, REMOVE_STORY, SET_STORIES} from '../constants/StoryConstants'
 import db from '../config/database'
+import uuid from 'uuid'
 
 export function removeStory(contactId, storyId) {
 	return async function(dispatch) {
@@ -20,12 +21,13 @@ export function removeStory(contactId, storyId) {
 	}
 }
 
-export function addStory(contactId, text) {
+export function addStory(contactId, title, text) {
 	return async function(dispatch) {
 		try {
 			let contact = await db.get(contactId)
 			let story = {
 				id:  uuid.v1(),
+				title,
 				text
 			}
 			contact.stories.push(story)
