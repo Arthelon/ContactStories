@@ -5,8 +5,12 @@ import { toggleStoryComposer } from '../actions/UIActions'
 import StoryList from '../components/story/StoryList'
 
 const mapStateToProps = state => {
+    let stories = state.main.get("stories").toArray().map(story => {
+        console.log(story)
+        return story
+    })
     return {
-        stories: state.main.get("stories").toArray(),
+        stories,
         selectedContactId: state.main.get("selectedContactId")
     }
 }

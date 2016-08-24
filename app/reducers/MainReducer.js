@@ -1,7 +1,7 @@
 import * as storyConstants from '../constants/StoryConstants'
 import * as contactConstants from '../constants/ContactConstants'
 
-import {Map, List, OrderedMap} from 'immutable'
+import {Map, List, OrderedMap, fromJS} from 'immutable'
 
 
 const initialState = Map({
@@ -13,11 +13,10 @@ const initialState = Map({
 export default function MainReducer(state = initialState, action) {
 	switch (action.type) {
 		case contactConstants.ADD_CONTACT:
-			return state.setIn(["contacts", action.contact.id], Map({
-				id: action.contact.id,
+			return state.setIn(["contacts", action.contact._id], Map({
+				id: action.contact._id,
 				name: action.contact.name,
 				image: action.contact.image,
-				stories: OrderedMap({})
 			}))
 		case contactConstants.REMOVE_CONTACT:
 			return state.deleteIn(["contacts", action.id])
@@ -27,12 +26,12 @@ export default function MainReducer(state = initialState, action) {
 			}))
 			return state.set("contacts", contacts)
 		case contactConstants.SELECT_CONTACT:
-			console.log(action.id)
 			return state.set('selectedContactId', action.id)
 		case storyConstants.ADD_STORY:
-			return state.get("stories").set(action.story.id, Map(action.story))
+			console.log(action)
+			return state.setIn(["stories", action.story.id], action.story)
 		case storyConstants.REMOVE_STORY:
-			return state.get("stories").delete(action.id)
+			return state.deleteIn(["stories", action.id])
 		case storyConstants.SET_STORIES:
 			let stories = action.stories.map(story => {
 				return [story.id, story]

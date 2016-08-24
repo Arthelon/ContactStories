@@ -9,8 +9,7 @@ export default class StoryList extends Component {
         this.contents = null;
         if (props.selectedContactId.length) {
             if (props.stories.length > 0) {
-                this.contents = Object.keys(props.stories).map(storyKey => {
-                    let story = props.stories[storyKey]
+                this.contents = props.stories.map(story => {
                     return (
                         <Story
                             key={story.id}
