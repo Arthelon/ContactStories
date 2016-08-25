@@ -33,7 +33,6 @@ app.on('ready', () => {
   });
 
   if (process.env.NODE_ENV === 'development') {
-    BrowserWindow.addDevToolsExtension('/Users/Daniel/Library/Application\ Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/0.15.1_0/')
     mainWindow.openDevTools();
   }
 

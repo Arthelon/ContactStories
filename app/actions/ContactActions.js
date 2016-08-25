@@ -8,13 +8,13 @@ export function addContact(name, imageUrl) {
 	return async function(dispatch) {
 		let imageParts = imageUrl.split('/')
 		let newImageUrl = BASE_URL + imageParts[imageParts.length - 1]
-		console.log(newImageUrl)
-		fs.renameSync(imageUrl, newImageUrl)
-		let document = await db.post({
+		fs.createReadStream(imageUrl).pipe(fs.createWriteStream(newImageUrl))
+		let postInstance = await db.post({
 			name,
 			newImageUrl,
 			stories: []
 		})
+		let document = await db.get(postInstance.id)
 		return dispatch({
 			type: ADD_CONTACT,
 			contact: document

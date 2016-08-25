@@ -43,13 +43,17 @@ export default class ContactList extends Component {
 					height: "100%",
 					width: "30%",
 					display: "inline-block"
+				},
+				list: {
+					maxHeight: "80%",
+					overflow: "scroll"
 				}
 			}
 		})
 		return (
 			<div style={styles.sidebar}>
 			<Subheader>Contacts</Subheader>
-			<SelectableList>
+			<SelectableList style={styles.list}>
 				{Object.keys(this.props.contacts).length ? Object.keys(this.props.contacts).map(key => {
 					let contact = this.props.contacts[key];
 					return <Contact
