@@ -42,6 +42,7 @@ export default class ContactList extends Component {
 				sidebar: {
 					height: "100%",
 					width: "30%",
+					minWidth: "175px",
 					display: "inline-block"
 				},
 				list: {
