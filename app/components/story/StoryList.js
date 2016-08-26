@@ -46,11 +46,12 @@ export default class StoryList extends Component {
         return (
             <div style={this.styles.main}>
                 { this.contents }
-                <CreateStoryButton
+                {this.props.selectedContactId.length ?
+                    <CreateStoryButton
                     handleClick={() => {
                         this.props.toggleStoryComposer()
                     }}
-                />
+                /> : null }
             </div>
         )
     }
